@@ -15,7 +15,7 @@
     <!--recycle view item-->
     <dimen name="card_view_margin">10dp</dimen>
     <dimen name="item_layout_margin">10dp</dimen>
-    <dimen name="item_image_view_height">250dp</dimen>
+    <dimen name="item_image_view_height">200dp</dimen>
     <dimen name="item_author_layout_margin_top">10dp</dimen>
     <dimen name="item_author_image_size">32dp</dimen>
     <dimen name="item_author_text_margin_start">10dp</dimen>

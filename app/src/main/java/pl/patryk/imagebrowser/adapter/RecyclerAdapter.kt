@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_layout.view.*
 import pl.patryk.imagebrowser.R
 import pl.patryk.imagebrowser.model.ItemEntity
 
-class RecyclerAdapter(context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var itemList = emptyList<ItemEntity>()
 
@@ -26,21 +26,21 @@ class RecyclerAdapter(context: Context) : RecyclerView.Adapter<RecyclerAdapter.V
 
         fun bind(itemEntity: ItemEntity) {
             Glide
-                .with(itemView.context)
+                .with(context)
                 .load(itemEntity.webformatURL)
                 .centerCrop()
                 .into(image)
             Glide
-                .with(itemView.context)
+                .with(context)
                 .load(itemEntity.userImageURL)
                 .centerCrop()
                 .into(authorImage)
 
-            author.text = itemEntity.user
+            author.text = context.resources.getString(R.string.author, itemEntity.user)
             likes.text = itemEntity.likes.toString()
             favourites.text = itemEntity.favorites.toString()
-            downloads.text = itemEntity.downloads.toString()
-            imageSize.text = itemEntity.imageSize.toString()
+            downloads.text = context.resources.getString(R.string.total_downloads, itemEntity.downloads)
+            imageSize.text = context.resources.getString(R.string.size, itemEntity.webformatWidth, itemEntity.webformatHeight)
         }
     }
 
@@ -55,7 +55,7 @@ class RecyclerAdapter(context: Context) : RecyclerView.Adapter<RecyclerAdapter.V
 
     override fun getItemCount() = itemList.size
 
-    internal fun setItems(items: List<ItemEntity>) {
+    fun setItems(items: List<ItemEntity>) {
         this.itemList = items
         notifyDataSetChanged()
     }

@@ -23,11 +23,17 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
         allItems = repository.allItems
     }
 
-    fun deleteAll() = repository.deleteAll()
-
-    fun getData() = repository.getData()
-
     fun insert(searchEntity: SearchEntity) = repository.insert(searchEntity)
 
     fun insert(itemEntity: ItemEntity) = repository.insert(itemEntity)
+
+    fun deleteAll() = repository.deleteAll()
+
+    fun getAllData() = repository.getAllData()
+
+    fun getSearchData(query: String,
+                      type: String,
+                      category: String,
+                      orientation: String)
+            = repository.getSearchData(query, type, category, orientation)
 }
