@@ -4,4 +4,4 @@ App uses Retrofit and MVVM pattern along with Room which is used to cache the da
 <br>
 Additional libraries: Glide, Toasty.
 # Preview
-![App preview](https://github.com/pinky169/ImageBrowser/blob/f7d424ace7e06d61b4f0605ed00166c88685aaec/app-demo.gif)
+![App preview](https://github.com/pinky169/ImageBrowser/blob/a0322bbbd2ba9b45c3f0f682b9343bf667dd464a/app-demo.gif)
