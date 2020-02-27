@@ -1,6 +1,6 @@
 # ImageBrowser
 Displays the data in a recycler view from Pixabay API. <br>
-App uses Retrofit and MVVM pattern along with Room. 
+App uses Retrofit and MVVM pattern along with Room which is used to cache the data.
 <br>
 Additional libraries: Glide, Toasty.
 # Preview
