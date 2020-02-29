@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import pl.patryk.imagebrowser.converters.Converters
+import pl.patryk.imagebrowser.converters.RoomConverters
 import pl.patryk.imagebrowser.dao.ItemDao
 import pl.patryk.imagebrowser.model.ItemEntity
 import pl.patryk.imagebrowser.model.SearchEntity
@@ -15,7 +15,7 @@ import pl.patryk.imagebrowser.model.SearchEntity
     version = 1,
     exportSchema = false
 )
-@TypeConverters(Converters::class)
+@TypeConverters(RoomConverters::class)
 abstract class ItemDatabase : RoomDatabase() {
 
     abstract fun itemDao(): ItemDao

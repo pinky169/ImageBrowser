@@ -2,6 +2,7 @@ package pl.patryk.imagebrowser.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "image_info")
 data class ItemEntity(
@@ -28,7 +29,7 @@ data class ItemEntity(
     val webformatHeight: Int,
     val webformatURL: String,
     val webformatWidth: Int
-) {
+) : Serializable {
     override fun toString(): String {
         return "ItemEntity(" +
                 "comments=$comments, " +

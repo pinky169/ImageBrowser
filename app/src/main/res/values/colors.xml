@@ -9,4 +9,5 @@
     <color name="colorTextTitle">#111c25</color>
     <color name="colorSpinnerLayout">#b4ffffff</color>
     <color name="colorTextToolBar">#434343</color>
+    <color name="colorTransparentDark">#AD000000</color>
 </resources>

@@ -9,5 +9,6 @@ App uses Retrofit and [MVVM pattern](https://developer.android.com/jetpack/docs/
 * [Gson](https://github.com/google/gson)
 * [Glide](https://github.com/bumptech/glide)
 * [Toasty](https://github.com/GrenderG/Toasty)
+* [PhotoView](https://github.com/chrisbanes/PhotoView)
 # Preview
 ![App preview](https://github.com/pinky169/ImageBrowser/blob/a0322bbbd2ba9b45c3f0f682b9343bf667dd464a/app-demo.gif)
