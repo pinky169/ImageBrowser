@@ -11,4 +11,4 @@ App uses Retrofit and [MVVM pattern](https://developer.android.com/jetpack/docs/
 * [Toasty](https://github.com/GrenderG/Toasty)
 * [PhotoView](https://github.com/chrisbanes/PhotoView)
 # Preview
-![App preview](https://github.com/pinky169/ImageBrowser/blob/a0322bbbd2ba9b45c3f0f682b9343bf667dd464a/app-demo.gif)
+![App preview](https://github.com/pinky169/ImageBrowser/blob/master/app-demo.gif)
