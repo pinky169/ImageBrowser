@@ -13,7 +13,7 @@ interface ImageApi {
     }
 
     @GET("?key=$API_KEY&per_page=200")
-    fun getData(): Call<SearchEntity>
+    fun getAllData(): Call<SearchEntity>
 
     @GET("?key=$API_KEY&per_page=200")
     fun getSearchResult(

@@ -17,9 +17,12 @@ interface ItemDao {
     @Query("SELECT * FROM search_data_table")
     fun getAllData(): LiveData<SearchEntity>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(searchEntity: SearchEntity)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(itemEntity: ItemEntity)
+    
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(itemList: List<ItemEntity>)
 }

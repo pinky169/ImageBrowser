@@ -18,69 +18,44 @@ class ItemRepository(private val itemDao: ItemDao) {
 
     fun insert(searchEntity: SearchEntity) = itemDao.insert(searchEntity)
 
+    fun insertAll(itemList: List<ItemEntity>) = itemDao.insertAll(itemList)
+
     fun deleteAll() = itemDao.deleteAll()
 
     fun getSearchData(query: String, type: String, category: String, orientation: String) {
-
         val call = ApiClient().getClient()?.getSearchResult(query, type, category, orientation)
-
-        call?.enqueue(object : Callback<SearchEntity> {
-            override fun onFailure(call: Call<SearchEntity>, t: Throwable) {
-                //Log.e("API", "error: ${t.message}")
-            }
-
-            override fun onResponse(call: Call<SearchEntity>, response: Response<SearchEntity>) {
-                when (response.code()) {
-                    200 -> {
-                        Thread(Runnable {
-
-                            ItemDatabase.INSTANCE!!.itemDao().deleteAll()
-
-                            val searchEntity = response.body()!!
-                            ItemDatabase.INSTANCE!!.itemDao().insert(searchEntity)
-
-                            val items = response.body()?.items
-
-                            for (item in items!!) {
-                                ItemDatabase.INSTANCE!!.itemDao().insert(item)
-                            }
-
-                        }).start()
-                    }
-                }
-            }
-        })
+        call?.enqueue(callback)
     }
 
     fun getAllData() {
+        val call = ApiClient().getClient()?.getAllData()
+        call?.enqueue(callback)
+    }
 
-        val call = ApiClient().getClient()?.getData()
+    private val callback = object : Callback<SearchEntity> {
 
-        call?.enqueue(object : Callback<SearchEntity> {
-            override fun onFailure(call: Call<SearchEntity>, t: Throwable) {
-                //Log.e("API", "error: ${t.message}")
-            }
+        override fun onFailure(call: Call<SearchEntity>, t: Throwable) {
+            //Log.e("API", "error: ${t.message}")
+        }
 
-            override fun onResponse(call: Call<SearchEntity>, response: Response<SearchEntity>) {
-                when (response.code()) {
-                    200 -> {
-                        Thread(Runnable {
+        override fun onResponse(call: Call<SearchEntity>, response: Response<SearchEntity>) {
+            when (response.code()) {
+                200 -> {
+                    Thread(Runnable {
 
-                            ItemDatabase.INSTANCE!!.itemDao().deleteAll()
+                        // Clear db
+                        ItemDatabase.INSTANCE!!.itemDao().deleteAll()
 
-                            val searchEntity = response.body()!!
-                            ItemDatabase.INSTANCE!!.itemDao().insert(searchEntity)
+                        // Insert search results into db
+                        val searchEntity = response.body()!!
+                        ItemDatabase.INSTANCE!!.itemDao().insert(searchEntity)
 
-                            val items = response.body()?.items
+                        val items = response.body()?.items
+                        ItemDatabase.INSTANCE!!.itemDao().insertAll(items!!)
 
-                            for (item in items!!) {
-                                ItemDatabase.INSTANCE!!.itemDao().insert(item)
-                            }
-
-                        }).start()
-                    }
+                    }).start()
                 }
             }
-        })
+        }
     }
 }

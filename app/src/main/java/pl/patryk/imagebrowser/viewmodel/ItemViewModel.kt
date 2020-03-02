@@ -27,6 +27,8 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(itemEntity: ItemEntity) = repository.insert(itemEntity)
 
+    fun insertAll(itemList: List<ItemEntity>) = repository.insertAll(itemList)
+
     fun deleteAll() = repository.deleteAll()
 
     fun getAllData() = repository.getAllData()
