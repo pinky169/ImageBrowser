@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import pl.patryk.imagebrowser.model.ItemEntity
 import java.io.File
 
-class DownloadHelper(private val context: Context, private val itemEntity: ItemEntity) : ActivityCompat.OnRequestPermissionsResultCallback {
+class DownloadHelper(private val context: Context, private val itemEntity: ItemEntity) {
 
     companion object {
         const val REQUEST_PERMISSION = 1
@@ -27,7 +27,7 @@ class DownloadHelper(private val context: Context, private val itemEntity: ItemE
         }
     }
 
-    private fun startDownload() {
+    fun startDownload() {
 
         val fileName = "pixabay_${itemEntity.id}.jpg"
         val file = File(Environment.getExternalStorageDirectory(), fileName)
@@ -43,13 +43,5 @@ class DownloadHelper(private val context: Context, private val itemEntity: ItemE
 
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            REQUEST_PERMISSION -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startDownload()
-            }
-        }
     }
 }
